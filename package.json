@@ -30,7 +30,6 @@
 		"vite": "^7.0.4"
 	},
 	"dependencies": {
-		"pocketbase": "^0.26.2",
-		"tw-elements": "^2.0.0"
+		"pocketbase": "^0.26.2"
 	}
 }
