@@ -1,6 +1,4 @@
 <script lang=ts>
-
-
     import { pb } from '$lib/pb';
 	import { error } from '@sveltejs/kit';
 	import type { RecordModel } from 'pocketbase';
