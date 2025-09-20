@@ -23,6 +23,7 @@
 <input type="text">{returnUser()}<input>
 
 <div class="testtailwind">
+  <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Responsive</button>
   <button class ="btn btn-primary" >Daisy Layout test</button>
   <h1 class="text-4xl font-bold text-blue-600">Tailwind CSS Test inside +layout</h1>
 </div>
