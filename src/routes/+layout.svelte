@@ -26,7 +26,5 @@
   <button class ="btn btn-primary" >Layout test</button>
 
   <h1 class="text-4xl font-bold text-blue-600">Tailwind CSS Test inside +layout</h1>
-</div>Tailwind
+</div>
 <footer>Impressum</footer>
-
-
