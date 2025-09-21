@@ -1,16 +1,15 @@
 <script lang="ts">
 	import favicon from '$lib/assets/Müllicon.jpg';
 	import '../app.css';
+	import type { Cookies } from '@sveltejs/kit';
 	import { pb } from '$lib/pb';
 	import Navbar from "./Navbar.svelte"
 	let { children } = $props()
-	let loggedIn = $state(false)
+	let loggedIn= $state<boolean>(pb.authStore.isValid)
 	const returnUser=()=>{
 		if(pb.authStore.isValid){
-			loggedIn = true
 			return "ID: "+pb.authStore.record?.id
 		} else {
-			loggedIn = false
 			return "Nicht eingeloggt"
 		}
 	}
@@ -26,9 +25,9 @@
 
 <!-- conten of children page goes here-->
 {@render children()}
-<input type="text">{returnUser()}<input>
-<!--TODO div class="testtailwind">
-  <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Responsive</button>
-  <h1 class="text-4xl font-bold text-blue-600">Tailwind CSS Test inside +layout</h1>
-</div-->
+<input type="text">{loggedIn}<input>
+<div>
+	{pb.authStore.loadFromCookie(cookies.get('pb_auth') || '')}
+</div>
+
 <footer>Impressum</footer>

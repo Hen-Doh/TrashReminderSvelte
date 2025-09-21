@@ -1,13 +1,23 @@
-<script>
+<script lang=ts>
   import { redirect } from '@sveltejs/kit';
   import '../app.css';
   import { goto } from '$app/navigation';
-  let {loggedIn} = $props()
+    import { pb } from '$lib/pb';
+
+  let { loggedIn } = $props() 
+
   function logIn(){
     console.log("not redirecting")
     goto('/auth/login');
   }
+  function logOut(){
+    pb.authStore.clear();
+    goto("/")
+  }
+
 </script>
+
+<!-- Navigationsleiste die jet nachchdem ob der nutzer eingeloggt ist einen login button oder einen-->
 <div class="navbar bg-base-100 shadow-sm">
   <div class="navbar-start">
     <div class="dropdown">
@@ -31,13 +41,13 @@
   <div class="navbar-end">
     {#if loggedIn}
       <div class="avatar avatar-placeholder">
-        <div class="bg-neutral text-neutral-content w-24 rounded-full">
-          <span class="text-3xl">Name</span>
+        <div class="bg-neutral text-neutral-content w-16 rounded-full">
+          <span class="text-1xl">Name</span>
         </div>
       </div>
+      <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl" onclick={logOut}>Abmelden</button>
     {:else}
-      <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl" onclick={logIn}>Einloggen</button>
+      <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl" onclick={logIn}>Anmelden</button>
     {/if}
-    <div>{loggedIn}</div>
   </div>
 </div>

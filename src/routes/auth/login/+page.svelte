@@ -18,9 +18,3 @@
   })
 </script>
 
-<!--könnte noch mehr provider unterstützen
-{#each providers as provider}
-  <button onclick={() => loginWith(provider)}>
-    Login with {provider.name}
-  </button>
-{/each}-->
