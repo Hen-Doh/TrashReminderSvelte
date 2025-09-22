@@ -1,9 +1,31 @@
 <script lang=ts>
     import { goto } from '$app/navigation';
     import { pb } from '$lib/pb';
+    import { trashTypes } from '$lib/muelltypen';
 	import { error } from '@sveltejs/kit';
 	import type { RecordModel } from 'pocketbase';
 	import { onMount } from 'svelte';
+    
+    let tempSettings = {
+        adresse: "Musterstraße 1",
+        müllTypen: [
+            trashTypes.Bio,
+            trashTypes.Papier,
+            trashTypes.Plastik,
+            trashTypes.Rest,
+            trashTypes.Eigene,
+            trashTypes.Grünschnitt,
+        ],
+        zeitVorlauf: 12,
+        benachrichtigungsart: "Email"
+    } satisfies {
+        adresse: string;
+        müllTypen: string[];
+        zeitVorlauf: number;
+        benachrichtigungsart: string;
+    };
+
+    
     let settings:RecordModel[] = $state([])
     //if(!pb.authStore.isValid){goto("/auth/login")}
     async function getSettings(){
@@ -17,14 +39,13 @@
 
         }
     }
-    async function createDefaultSetting(){
-    const data = {
-            "Erinnerungs_Vorlauf": 123,
-            "Relevante_Typen": [
-                "Bio"
-            ],
-            "Benachrichtigungsart": "Email",
-            "user": pb.authStore.record?.id
+    async function createSetting(){
+        const data = {
+            "Erinnerungs_Vorlauf": tempSettings.zeitVorlauf,
+            "Relevante_Typen": tempSettings.müllTypen,
+            "Benachrichtigungsart": tempSettings.benachrichtigungsart,
+            "user": pb.authStore.record?.id,
+            "adresse": tempSettings.adresse
         };
         try {
             await pb.collection('Settings').create(data);
@@ -35,12 +56,16 @@
     onMount(()=>{
         getSettings().then(()=>console.log(settings)).then(()=>{
                 if(settings.length === 0){
-                    createDefaultSetting()
-                    getSettings().then(()=>console.log("created Settings"))
-                    
+                    createSetting()
                 }
             })
     })
 </script>
+<!--
+<Zeitpunkt
+<Adresse
+<Müllarten
+<Benachrichtigungsart
 
+-->
 <div>{settings}</div>
