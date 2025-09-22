@@ -21,7 +21,7 @@
         'http://localhost:5173/auth/callback' 
       );
     }
-    auth().then(()=>window.location.href = "/")
+    auth().then(()=>{pb.authStore.exportToCookie()}).then(()=>window.location.href = "/")
     // wieder zurück zur homepage
   })
 

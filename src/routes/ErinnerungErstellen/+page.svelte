@@ -14,7 +14,7 @@
         };
 
         record = await pb.collection('Erinnerung').create(data);
-        console.log(record)
+        //console.log(record)
         console.log(JSON.stringify(record, null, 2)); // Pretty-printed JSON output
 
     }
