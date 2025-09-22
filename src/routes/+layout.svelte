@@ -22,9 +22,19 @@ TODO
 	<title>Müllerinnerung</title>
 </svelte:head>
 
-<Navbar loggedIn={loggedIn}/>
-<!-- conten of children page goes here-->
-{@render children()}
-<footer class="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
-  <div>Impressum</div>
-</footer>
+<div class="min-h-screen flex flex-col">
+    <!-- Main content -->
+    <main class="flex-grow">
+		<!--see /Navbar-->
+		<Navbar loggedIn={loggedIn}/>
+        {@render children()}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
+        <div>Impressum</div>
+		<div>inhalt</div>
+    </footer>
+</div>
+
+	
