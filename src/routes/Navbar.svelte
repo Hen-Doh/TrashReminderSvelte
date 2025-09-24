@@ -2,12 +2,11 @@
   import { redirect } from '@sveltejs/kit';
   import '../app.css';
   import { goto } from '$app/navigation';
-    import { pb } from '$lib/pb';
+  import { pb } from '$lib/pb';
 
   let { loggedIn } = $props() 
 
   function logIn(){
-    console.log("not redirecting")
     goto('/auth/login');
   }
   function logOut(){

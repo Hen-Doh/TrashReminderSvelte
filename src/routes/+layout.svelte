@@ -15,6 +15,13 @@ TODO
 	import Navbar from "./Navbar.svelte"
 	let { children } = $props()
 	let loggedIn= $state<boolean>(pb.authStore.isValid)
+	const returnUser=()=>{
+		if(pb.authStore.isValid){
+			return "ID: "+pb.authStore.record?.id
+		} else {
+			return "Nicht eingeloggt"
+		}
+	}
 </script>
 
 <svelte:head>
@@ -29,7 +36,6 @@ TODO
 		<Navbar loggedIn={loggedIn}/>
         {@render children()}
     </main>
-
     <!-- Footer -->
     <footer class="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
         <div>Impressum</div>
