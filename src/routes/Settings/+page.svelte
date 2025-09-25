@@ -38,9 +38,8 @@
             settings = await pb.collection('Settings').getFullList()
             console.debug("fetched settings")
         }catch(err){
-            console.log("das will ich lesen...")
+            console.error("cant fetch settings")
             $inspect(settings).with(console.trace)
-
         }
     }
     async function createSetting(){
@@ -106,7 +105,6 @@
     }
 </script>
 
-<text>{settings[0]}</text>
 <div class="max-w-xl mx-auto bg-white rounded-2xl shadow p-6 space-y-4">
     <!--Mülltypen auswahl-->
     <h2 class="text-lg font-semibold text-gray-800">Relevante Müll Typen</h2>

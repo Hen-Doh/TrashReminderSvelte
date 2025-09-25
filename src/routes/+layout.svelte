@@ -45,4 +45,13 @@ TODO
     </footer>
 </div>
 
-	
+
+<!--
+anmeldung/Registrierung
+Settings
+Email erinnerung
+Ansicht mit den kommenden (>= 10) Abholterminen und ihrem jeweiligen Status. 
+	Die Termine lassen sich frontendseitig nach Abholart filtern
+WG-Feature
+
+-->
