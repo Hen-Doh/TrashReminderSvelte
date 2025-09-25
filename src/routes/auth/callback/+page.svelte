@@ -15,26 +15,29 @@
     }
     // Finish OAuth2 login
     const auth =async () => {
-      await pb.collection('users').authWithOAuth2Code(
-        'gitlab',
-        gitCode,
-        gitVerifier,
-        'http://localhost:5173/auth/callback' 
-      );
+      try{
+        await pb.collection('user').authWithOAuth2Code(
+          'gitlab',
+          gitCode,
+          gitVerifier,
+          'http://localhost:5173/auth/callback' 
+        );
+      }catch (err){
+        console.error("failed authWithOAuth2   "+err)
+      }
     }
     auth().then(()=>{pb.authStore.exportToCookie()}).then(()=>{
       try{
         if(pb.authStore.isValid){
           console.log("authentication sucessful going home now")
-          window.location.href = "/"
+          //window.location.href = "/"
         }else{
-          console.log("authentication failed going home now")
+          console.log("authentication failed")
         }
       }catch (err){
         console.error("failed to verify authentication",err)
       }
     })
-    // wieder zurück zur homepage
   })
 
 

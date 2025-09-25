@@ -1,1 +1,8 @@
-export enum trashTypes{Bio="Bio",Rest="Rest",Plastik="Plastik",Papier="Papier",Grünschnitt="Grünschnitt",Eigene="Eigene"}
+export enum trashTypes{
+    Bio="Bio",
+    Rest="Rest",
+    Plastik="Plastik",
+    Papier="Papier",
+    Grünschnitt="Grünschnitt",
+    Eigene="Eigene"
+}

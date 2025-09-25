@@ -1,9 +1,11 @@
 <!--TODOS:
+TODO Name korrekt anzeigen in der Navbar
 TODO Try Catch stuff z.B. um authstore stuff
 TODO beautify
 TODO Settings
 TODO Erinnerungen
 TODO Hono?
+TODO Input validation
 TODO Fuktionalitäten richtung Server verschieben(zb default Settings)
 TODO GAnz englisch oder ganz Deutsch, weniger mixen
 TODO 
@@ -39,7 +41,7 @@ TODO
     <!-- Footer -->
     <footer class="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
         <div>Impressum</div>
-		<div>inhalt</div>
+		<div>{loggedIn}</div>
     </footer>
 </div>
 
