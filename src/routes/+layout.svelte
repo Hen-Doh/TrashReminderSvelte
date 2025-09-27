@@ -1,12 +1,12 @@
 <!--TODOS:
 TODO Name korrekt anzeigen in der Navbar
-TODO Try Catch stuff z.B. um authstore stuff
-TODO beautify
-TODO Settings
+TODO mehr Try Catch stuff und bessere error meldungen z.B. um authstore stuff
+TODO beautify benutzen
 TODO Erinnerungen
 TODO Hono?
-TODO Input validation
+TODO Input validation? oder reicht pb?
 TODO Fuktionalitäten richtung Server verschieben(zb default Settings)
+TODO Registrierung statt merkwürdige defaults
 TODO GAnz englisch oder ganz Deutsch, weniger mixen
 TODO 
 -->

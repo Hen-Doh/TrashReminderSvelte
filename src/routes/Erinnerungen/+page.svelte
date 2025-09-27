@@ -6,10 +6,11 @@
     import { goto } from '$app/navigation';
 	import Erinnerung from "./Erinnerung.svelte"
     
+    //TODO Typing
     let erinnerungenList=$state()
     async function getErinnerungen(){
         try{
-            let erinnerungen:RecordModel = await pb.collection("Erinnerungen").getFullList()
+            let erinnerungen:RecordModel[] = await pb.collection("Erinnerungen").getFullList()
             console.debug("fetched erinnerungen with length: " + erinnerungen.length)
             if(erinnerungen.length==0){
                 try{
@@ -72,7 +73,7 @@
                 goto("/Settings")
             }
          })
-        getErinnerungen().then(ready=true)
+        getErinnerungen().then(()=>{ready=true})
         
     })
 </script>
