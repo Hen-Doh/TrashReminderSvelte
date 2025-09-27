@@ -42,7 +42,7 @@
       }
     })
   })
-  //TODO 
+  //TODO debounce? aber das kann auch verwirrend sein
   $effect(() => {
     (async ()=>{
       // whenever tempErinnerung changes, this runs

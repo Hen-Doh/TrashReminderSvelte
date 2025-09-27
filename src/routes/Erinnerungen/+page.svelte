@@ -60,6 +60,10 @@
             $inspect(settings).with(console.trace)
         }
     }
+    function abfuhrkalenderImportieren(){
+       
+
+    }
     let ready:boolean = $state(false)
     onMount(()=>{
         if(!pb.authStore.isValid){
@@ -78,9 +82,13 @@
     })
 </script>
 
+<button onclick={abfuhrkalenderImportieren} class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Abfuhrkalender importieren</button>
 
 <div class="max-w-xl mx-auto bg-white rounded-2xl shadow p-6 space-y-4">
     {#if ready}
+        {#if erinnerungenList.length===0}
+            <button onclick={abfuhrkalenderImportieren} class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Abfuhrkalender importieren</button>
+        {/if}
         {#each erinnerungenList as id }
             <Erinnerung id={id}></Erinnerung>
         {/each}

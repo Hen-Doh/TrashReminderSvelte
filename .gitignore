@@ -3,10 +3,10 @@ Videos/
 .mp4
 .pdf
 .png
-#node_modules/
+node_modules/
 bun.lock
 package-lock.json
-#package.json
+package.json
 pocketbase/
 test.txt
 secret.json
@@ -32,5 +32,5 @@ Thumbs.db
 !.env.test
 
 # Vite
-#vite.config.js.timestamp-*
-#vite.config.ts.timestamp-*
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
