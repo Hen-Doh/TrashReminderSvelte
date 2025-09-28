@@ -5,7 +5,7 @@
     import { onMount } from 'svelte';
     import { goto } from '$app/navigation';
 	import Erinnerung from "./Erinnerung.svelte"
-    
+    let {data}=$props();
     //TODO Typing
     let erinnerungenList=$state()
     async function getErinnerungen(){
@@ -60,9 +60,12 @@
             $inspect(settings).with(console.trace)
         }
     }
-    function abfuhrkalenderImportieren(){
-       
-
+    let res = $state()
+    async function abfuhrkalenderImportieren(){
+       const response = await fetch('/Erinnerungen?name=Svelte')
+       res = await response.json()
+       res = res.test
+    console.info(res)
     }
     let ready:boolean = $state(false)
     onMount(()=>{
@@ -81,9 +84,9 @@
         
     })
 </script>
-
+<div>{res}</div>
 <button onclick={abfuhrkalenderImportieren} class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Abfuhrkalender importieren</button>
-
+<div>{data.test}</div>
 <div class="max-w-xl mx-auto bg-white rounded-2xl shadow p-6 space-y-4">
     {#if ready}
         {#if erinnerungenList.length===0}

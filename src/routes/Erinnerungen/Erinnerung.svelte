@@ -24,7 +24,7 @@
       buffering=false
       console.log(erinnerung.Typ)
     }catch (err){
-      console.error("Coundnt fetch Erinnerung with id: "+id+"  ",err)
+      console.error("Coundnt get Erinnerung with id: "+id+"  ",err)
     }
   }
   onMount(()=>{
