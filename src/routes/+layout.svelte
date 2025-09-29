@@ -1,4 +1,5 @@
 <!--TODOS:
+TODO actual error page for fatal errors
 TODO Name korrekt anzeigen in der Navbar
 TODO mehr Try Catch stuff und bessere error meldungen z.B. um authstore stuff
 TODO beautify benutzen

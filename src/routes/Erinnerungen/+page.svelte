@@ -32,7 +32,7 @@
                 }
             }else{
                 erinnerungenList = erinnerungen[0]["Erinnerungen"]
-                console.debug("ErinnerungenList: ",$state.snapshot(erinnerungenList[0]))
+                console.debug("ErinnerungenList: ",$state.snapshot(erinnerungenList))
             }//TODO deal with multiple Lists
         }catch(err){
             console.error("failed fetching erinnerungen record "+err)
@@ -50,22 +50,30 @@
         //console.log(JSON.stringify(record, null, 2)); // Pretty-printed JSON output
 
     }
-    let settings:RecordModel[] = $state([])
+    let settings:RecordModel[]|undefined = $state()
     async function getSettings(){
         try{
+            let id:string | undefined = pb.authStore.record?.id
+            if(id === undefined){throw new Error(" id not available")}
             settings = await pb.collection('Settings').getFullList()
+            if(settings===undefined){goto("/Settings")}
             console.debug("fetched settings at /Erinnerung")
         }catch(err){
             console.error("cant fetch settings at /Erinnerung... "+err)
-            $inspect(settings).with(console.trace)
+            goto("/Settings")
         }
     }
-    let res = $state()
+    let res:{} = $state({})
     async function abfuhrkalenderImportieren(){
-       const response = await fetch('/Erinnerungen?name=Svelte')
-       res = await response.json()
-       res = res.test
-    console.info(res)
+        getSettings().then(async ()=>{
+            if(settings===undefined){goto("/Settings")}
+            //TODO convert spaces to + in streetnames
+            let nr =settings[0].Hausnummer
+            let str = settings[0].Strasse
+            const response = await fetch('/Erinnerungen?str='+str+"&nr="+nr)
+            res = await response.json()
+        })
+        console.info(res)
     }
     let ready:boolean = $state(false)
     onMount(()=>{
