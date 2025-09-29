@@ -2,10 +2,7 @@ import type { RequestHandler } from './$types';
 import { json } from '@sveltejs/kit';
 import { trashTypes } from '$lib/muelltypen';
 const year = "2025"
-type event = {
-    typ:trashTypes
-    date:string
-}
+
 function failed(str:string){
     return json({ success: false, error: str }, { status: 500 })
 }
@@ -14,11 +11,15 @@ function formatEvents(events:string[]){
     events.forEach(event => {
         console.log("formatEvents start of each loop")
         let arr = event.split("\n")
-        let muellart:trashTypes 
-        //console.log("arr0"+arr[0])
-        //console.log("arr3#"+arr[3].trim()+"#")
-        //console.log("arr6#"+arr[6].trim()+"#")
-        switch(arr[6].trim()){
+        //Strauchschnitt ist anders formatiert als der Rest daher kann keine feste stelle vom array genommen werden
+        const summaryLine = arr.find(line => line.startsWith("SUMMARY:"));
+        let dateLine = arr.find(line => line.startsWith("DTSTART:"));
+        if(dateLine===undefined||summaryLine===undefined){
+            throw new Error(`Event ${arr} hat das falsche format/enthält nicht `)
+        }
+        dateLine = dateLine.replace(/\r$/, "")
+        let muellart:trashTypes
+        switch(summaryLine?.trim()){
             case "SUMMARY:[GEB] Abfuhr des gelben Sacks": muellart = trashTypes.Plastik;
             break;
             case "SUMMARY:[GEB] Abfuhr der Restmülltonne": muellart = trashTypes.Rest
@@ -31,7 +32,7 @@ function formatEvents(events:string[]){
             break;
             default:
                 console.log("dis de issue: |",arr[6],"end")
-                throw new Error(` "${arr[6]}" wurde nicht als Müllart erkannt`);
+                throw new Error(` "${summaryLine}" wurde nicht als Müllart erkannt`);
         }
         eventList.push({
             typ:muellart,
